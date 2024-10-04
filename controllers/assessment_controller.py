@@ -23,30 +23,31 @@ def create_assessment(data):
             assessment = Assessment(Assessment_Id=assessment_id)
 
         # Update or set fields
-        assessment.Name__c = data.get("Name__c")
+        assessment.Name__c = data.get("Name__c") or assessment.Name__c  # Retain existing if not provided
         assessment.CreatedDate = assessment.CreatedDate or datetime.now()  # Set creation date only if not previously set
-        assessment.Date__c = data.get("Date__c")
-        assessment.Rubric__c = data.get("Rubric__c")
-        assessment.School__c = data.get("School__c")
-        assessment.Standard__c = data.get("Standard__c")
-        assessment.Subject__c = data.get("Subject__c")
-        assessment.Teacher__c = data.get("Teacher__c")
-        assessment.Assessment_Que_Image__c = data.get("Assessment_Que_Image__c")
-        assessment.Assessment_Type = data.get("Assessment_Type")
-        assessment.Session_Id = data.get("Session_Id")
-        assessment.Teacher_Contact_Id = data.get("Teacher_Contact_Id")
-        assessment.Teacher_Email = data.get("Teacher_Email")
-        assessment.Created_As_Premium = data.get("Created_As_Premium")
-        assessment.Domain__c = data.get("Domain__c")
-        assessment.Sub_Domain__c = data.get("Sub_Domain__c")
-        assessment.Grade__c = data.get("Grade__c")
-        assessment.Status = data.get("Status")
-        assessment.AI_Scan = data.get("AI_Scan")
-        assessment.Enable_Google_Sync = data.get("Enable_Google_Sync")
-        assessment.Google_Presentation_Id = data.get("Google_Presentation_Id")
-        assessment.Tokens_Consumed = data.get("Tokens_Consumed")
+        assessment.Date__c = data.get("Date__c") or assessment.Date__c
+        assessment.Rubric__c = data.get("Rubric__c") or assessment.Rubric__c
+        assessment.School__c = data.get("School__c") or assessment.School__c
+        assessment.Standard__c = data.get("Standard__c") or assessment.Standard__c
+        assessment.Subject__c = data.get("Subject__c") or assessment.Subject__c
+        assessment.Teacher__c = data.get("Teacher__c") or assessment.Teacher__c
+        assessment.Assessment_Que_Image__c = data.get("Assessment_Que_Image__c") or assessment.Assessment_Que_Image__c
+        assessment.Assessment_Type = data.get("Assessment_Type") or assessment.Assessment_Type
+        assessment.Session_Id = data.get("Session_Id") or assessment.Session_Id
+        assessment.Teacher_Contact_Id = data.get("Teacher_Contact_Id") or assessment.Teacher_Contact_Id
+        assessment.Teacher_Email = data.get("Teacher_Email") or assessment.Teacher_Email
+        assessment.Created_As_Premium = data.get("Created_As_Premium") or assessment.Created_As_Premium
+        assessment.Domain__c = data.get("Domain__c") or assessment.Domain__c
+        assessment.Sub_Domain__c = data.get("Sub_Domain__c") or assessment.Sub_Domain__c
+        assessment.Grade__c = data.get("Grade__c") or assessment.Grade__c
+        assessment.Status = data.get("Status") or assessment.Status
+        assessment.AI_Scan = data.get("AI_Scan") or assessment.AI_Scan
+        assessment.Enable_Google_Sync = data.get("Enable_Google_Sync") or assessment.Enable_Google_Sync
+        assessment.Google_Presentation_Id = data.get("Google_Presentation_Id") or assessment.Google_Presentation_Id
+        assessment.Tokens_Consumed = data.get("Tokens_Consumed") or assessment.Tokens_Consumed
         assessment.UpdatedAt = datetime.now()
 
+        
         db.session.add(assessment)
         db.session.flush()  # This generates the Assessment entry without committing
 
